@@ -1,0 +1,7 @@
+<ion-radio ng-model="options.gender" value="all">Alla</ion-radio>
+<ion-radio ng-model="options.gender" value="men">Män</ion-radio>
+<ion-radio ng-model="options.gender" value="women">Kvinnor</ion-radio>
+Från:<br />
+<select ng-model="options.yearStart" ng-options="y for y in [] | range:1981:2014 | upperLimit:options.yearEnd"></select><br />
+Till och med:<br />
+<select ng-model="options.yearEnd" ng-options="y for y in [] | range:1981:2014 | lowerLimit:options.yearStart"></select><br />

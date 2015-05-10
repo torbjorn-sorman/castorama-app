@@ -1,0 +1,156 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+@font-face {
+    font-family: 'DIN145136breit';
+    src: url('fonts/DIN145136breit.eot');
+    src: url('fonts/DIN145136breit.eot') format('embedded-opentype'),
+         url('fonts/DIN145136breit.woff2') format('woff2'),
+         url('fonts/DIN145136breit.woff') format('woff'),
+         url('fonts/DIN145136breit.ttf') format('truetype'),
+         url('fonts/DIN145136breit.svg#DIN145136breit') format('svg');
+}
+
+.colored-background {
+  background-color: rgba(230,245,255,1);
+}
+
+.event-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.number-display {
+    font-family: "DIN145136breit";
+    font-size: 28px;
+}
+
+input[type="text"], input[type="number"] {
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  -ms-border-radius: none;
+  -o-border-radius: none;
+  border-radius: none;
+}
+input[type="text"]:focus, input[type="number"]:focus {
+  outline: none;
+}
+
+/* ============================================================
+  STYLE 1
+============================================================ */
+.style-1 input[type="text"] {
+  padding: 10px;
+  border: solid 1px gainsboro;
+  -webkit-transition: box-shadow 0.3s, border 0.3s;
+  -moz-transition: box-shadow 0.3s, border 0.3s;
+  -o-transition: box-shadow 0.3s, border 0.3s;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+.style-1 input[type="text"]:focus, .style-1 input[type="text"].focus {
+  border: solid 1px #707070;
+  -webkit-box-shadow: 0 0 5px 1px #969696;
+  -moz-box-shadow: 0 0 5px 1px #969696;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+/* ============================================================
+  STYLE 2
+============================================================ */
+.style-2 input[type="text"] {
+  padding: 10px;
+  border: solid 5px #c9c9c9;
+  -webkit-transition: border 0.3s;
+  -moz-transition: border 0.3s;
+  -o-transition: border 0.3s;
+  transition: border 0.3s;
+}
+.style-2 input[type="text"]:focus, .style-2 input[type="text"].focus {
+  border: solid 5px #969696;
+}
+
+/* ============================================================
+  STYLE 3
+============================================================ */
+.style-3 input[type="text"] {
+  padding: 10px;
+  border: solid 5px #c9c9c9;
+  -webkit-box-shadow: inset 0 0 0 1px #707070;
+  -moz-box-shadow: inset 0 0 0 1px #707070;
+  box-shadow: inset 0 0 0 1px #707070;
+  -webkit-transition: box-shadow 0.3s, border 0.3s;
+  -moz-transition: box-shadow 0.3s, border 0.3s;
+  -o-transition: box-shadow 0.3s, border 0.3s;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+.style-3 input[type="text"]:focus, .style-3 input[type="text"].focus {
+  border: solid 5px #969696;
+}
+
+/* ============================================================
+  STYLE 4
+============================================================ */
+.style-4 input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  -webkit-transition: border 0.3s;
+  -moz-transition: border 0.3s;
+  -o-transition: border 0.3s;
+  transition: border 0.3s;
+}
+.style-4 input[type="text"]:focus, .style-4 input[type="text"].focus {
+  border-bottom: solid 2px #969696;
+}
+
+/* ============================================================
+  STYLE 5
+============================================================ */
+.style-5 input[type="text"], .style-5 input[type="number"] {
+  padding: 10px;
+  border: solid 1px #fff;
+  -webkit-box-shadow: inset 1px 1px 2px 0 #707070;
+  -moz-box-shadow: inset 1px 1px 2px 0 #707070;
+  box-shadow: inset 1px 1px 2px 0 #707070;
+  -webkit-transition: box-shadow 0.3s;
+  -moz-transition: box-shadow 0.3s;
+  -o-transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s;
+}
+.style-5 input[type="text"]:focus, .style-5 input[type="text"].focus, .style-5 input[type="number"]:focus, .style-5 input[type="number"].focus {
+  -webkit-box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+  -moz-box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+  box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+}

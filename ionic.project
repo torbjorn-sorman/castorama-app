@@ -1,0 +1,12 @@
+{
+  "name": "plasmac",
+  "app_id": "093c557d",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}

@@ -1,0 +1,16 @@
+<ion-view view-title="Poängberäkning">
+  <ion-content class="padding colored-background">    
+    <ion-radio ng-model="castorama.gender.value" value="men">Män</ion-radio>
+    <ion-radio ng-model="castorama.gender.value" value="women">Kvinnor</ion-radio>
+    <div class="row" ng-repeat="e in ['shot', 'javelin', 'discus', 'hammer']">
+      <div class="col col-25"><img class="event-icon" src="{{castorama.events[e].name}}" /></div>
+      <div class="col col-33 style-5"><input type="number" ng-model="castorama.events[e].result" step="0.01" pattern="[0-9.]*" /></div>
+      <div class="col col-33 number-display">{{castorama.events[e].score}}</div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col"></div>
+        <div class="col number-display">{{castorama.sum.value}}</div>
+    </div>
+  </ion-content>
+</ion-view>
