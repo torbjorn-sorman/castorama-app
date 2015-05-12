@@ -1,7 +1,25 @@
 <ion-radio ng-model="options.gender" value="all">Alla</ion-radio>
 <ion-radio ng-model="options.gender" value="men">Män</ion-radio>
 <ion-radio ng-model="options.gender" value="women">Kvinnor</ion-radio>
-Från:<br />
-<select ng-model="options.yearStart" ng-options="y for y in [] | range:1981:2014 | upperLimit:options.yearEnd"></select><br />
-Till och med:<br />
-<select ng-model="options.yearEnd" ng-options="y for y in [] | range:1981:2014 | lowerLimit:options.yearStart"></select><br />
+<div class="row">
+    <div class="col">
+        Från:
+    </div>
+    <div class="col">
+        <select ng-model="options.yearStart" ng-options="y for y in [] | range:1981:2014 | upperLimit:options.yearEnd"></select>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        Till:
+    </div>
+    <div class="col">
+        <select ng-model="options.yearEnd" ng-options="y for y in [] | range:1981:2014 | lowerLimit:options.yearStart"></select><br />
+    </div>
+</div>
+<form>
+    <ion-toggle ng-model="options.direction.value" toggle-class="toggle-calm">{{options.direction.disp}}</ion-toggle>
+    Sortera på
+    <ion-radio ng-model="options.orderby" ng-repeat="p in orderItems" value="{{p.column}}">{{p.title}}</ion-radio>
+</form>
+

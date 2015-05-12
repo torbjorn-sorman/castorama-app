@@ -1,16 +1,29 @@
 <ion-view view-title="Poängberäkning">
-  <ion-content class="padding colored-background">    
-    <ion-radio ng-model="castorama.gender.value" value="men">Män</ion-radio>
-    <ion-radio ng-model="castorama.gender.value" value="women">Kvinnor</ion-radio>
-    <div class="row" ng-repeat="e in ['shot', 'javelin', 'discus', 'hammer']">
-      <div class="col col-25"><img class="event-icon" src="{{castorama.events[e].name}}" /></div>
-      <div class="col col-33 style-5"><input type="number" ng-model="castorama.events[e].result" step="0.01" pattern="[0-9.]*" /></div>
-      <div class="col col-33 number-display">{{castorama.events[e].score}}</div>
-    </div>
-    <div class="row">
-      <div class="col"></div>
-      <div class="col"></div>
-        <div class="col number-display">{{castorama.sum.value}}</div>
-    </div>
-  </ion-content>
+    <ion-content class="padding colored-background">
+        <!--<ion-toggle ng-model="castorama.gender.toggle" toggle-class="toggle-calm">{{castorama.gender.disp()}}</ion-toggle>-->
+        <div class="row">
+            <div class="col col-25 col-offset-25">
+                <img class="gender-icon {{ castorama.gender.toggle ? 'selected' : ''}}" ng-click="genderSelect('men')" ng-src="img/male.png" />
+            </div>
+            <div class="col col-25">
+                <img class="gender-icon {{ !castorama.gender.toggle ? 'selected' : ''}}" ng-click=" genderSelect('women')" ng-src="img/female.png" />
+            </div>
+        </div>
+        <div class="row" ng-repeat="e in ['shot', 'javelin', 'discus', 'hammer']">
+            <div class="col col-25">
+                <img class="event-icon" ng-src="{{castorama.events[e].name}}" />
+            </div>
+            <div class="col col-33 style-5">
+                <input type="number" ng-model="castorama.events[e].result" step="1" ng-click="inputClick()" placeholder="(cm)" />
+            </div>
+            <div class="col col-33 col-offset-10 number-display">
+                {{castorama.events[e].score}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-25"></div>
+            <div class="col col-33"></div>
+            <div class="col col-33 col-offset-10 number-display">{{castorama.sum.value}}</div>
+        </div>
+    </ion-content>
 </ion-view>

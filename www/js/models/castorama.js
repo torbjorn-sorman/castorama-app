@@ -1,4 +1,4 @@
-
+﻿
 function Castorama(scoreTable) {
     var table = scoreTable;
     var gender = new Gender('men');
@@ -28,9 +28,10 @@ function Sum() {
 
     this.__defineGetter__("value", function () {
         var total = 0;
-        for (e in events)
-            total += parseInt(events[e].score);
-        console.log("sum.value: " + total);
+        for (e in events) {
+          var val = parseInt(events[e].score);
+          total += isNaN(val) ? 0 : val;
+        }
         return isNaN(total) || total < 1 ? "" : total;
     });
 
@@ -44,27 +45,36 @@ function Sum() {
 
 function Gender(g) {
     var value = g;
+    var menSelected = (g == 'men');
+    // Sum is needed to trigger recalculation
     var sum = null;
+
+    this.__defineGetter__("toggle", function () {
+        return menSelected;
+    });
+    this.__defineSetter__("toggle", function (val) {
+        menSelected = val;
+        value = val ? 'men' :'women';
+        sum.value;
+    });
+
     this.__defineGetter__("value", function () {
         return value;
     });
-    this.__defineSetter__("value", function (val) {
-        if (val == 'men' || val == 'women') {
-            value = val;
-            sum.value;
-        }
-    });
 
-    this.__defineGetter__("sum", function () {
-        return sum;
-    });
+    this.disp = function (g) {
+        if (g == 'men')
+            return menSelected ? "M\u00E4n" : 'M\u00E4n';
+        return menSelected ? "Kvinnor" : 'Kvinnor';
+    }
+
     this.__defineSetter__("sum", function (val) {
         sum = val;
     });
 }
 
 function Event(t, g, s, e, n) {
-    var result = 0;
+    var result = "";
     var score = 0;
 
     var table = t;
@@ -76,20 +86,18 @@ function Event(t, g, s, e, n) {
     var sum = s;
 
     this.__defineGetter__("result", function () {
-        return result < 1 ? "" : result;
+        return result;
     });
 
-    this.__defineSetter__("result", function (val) {
-        console.log("event.result: " + val);
+    this.__defineSetter__("result", function (val) {        
         val = parseFloat(val);
         result = val;
-        sum.value;
-        console.log("event.result(parsed): " + result);
+        sum.value;        
     });
 
     this.__defineGetter__("score", function () {
-        score = table.lookup(gender.value, event, result * 100);
-        return score < 1 ? "" : score;
+        score = table.lookup(gender.value, event, result);
+        return score < 1 ? 0 : score;
     });
 
     this.__defineGetter__("name", function () {
