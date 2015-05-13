@@ -1,25 +1,32 @@
-<ion-radio ng-model="options.gender" value="all">Alla</ion-radio>
-<ion-radio ng-model="options.gender" value="men">Män</ion-radio>
-<ion-radio ng-model="options.gender" value="women">Kvinnor</ion-radio>
+<p>Urval:</p>
+<button class="button button-icon button-gender ion-person-stalker {{ options.gender == 'all' ? 'button-selected' : ''}}" ng-click="options.gender = 'all'"></button>
+<button class="button button-icon button-gender ion-man {{ options.gender == 'men' ? 'button-selected' : ''}}" ng-click="options.gender = 'men'"></button>
+<button class="button button-icon button-gender ion-woman {{ options.gender == 'women' ? 'button-selected' : ''}}" ng-click="options.gender = 'women'"></button>
+<p>År:</p>
 <div class="row">
-    <div class="col">
-        Från:
-    </div>
+
     <div class="col">
         <select ng-model="options.yearStart" ng-options="y for y in [] | range:1981:2014 | upperLimit:options.yearEnd"></select>
     </div>
-</div>
-<div class="row">
-    <div class="col">
-        Till:
+    <div class="col col-20">
+        <div class="icon ion-arrow-right-c"></div>
     </div>
     <div class="col">
         <select ng-model="options.yearEnd" ng-options="y for y in [] | range:1981:2014 | lowerLimit:options.yearStart"></select><br />
     </div>
 </div>
-<form>
-    <ion-toggle ng-model="options.direction.value" toggle-class="toggle-calm">{{options.direction.disp}}</ion-toggle>
-    Sortera på
-    <ion-radio ng-model="options.orderby" ng-repeat="p in orderItems" value="{{p.column}}">{{p.title}}</ion-radio>
-</form>
 
+<p>Sortera på:</p>
+<p>
+    <button class="button button-icon button-small-text {{ options.orderby == p ? 'event-icon-selected' : ''}}" ng-repeat="p in nonEventItems" ng-click="options.orderby = p">
+        {{p.title}}
+    </button>
+</p>
+<p>
+    <button class="button button-icon {{ options.orderby == p ? 'event-icon-selected' : ''}}" ng-rep ng-repeat="p in eventItems" ng-click="options.orderby = p">
+        <img class="event-icon" ng-src="{{'img/events/' + p.name + '.png'}}" />
+    </button>
+</p>
+<p>
+    <ion-toggle ng-model="options.direction.value" toggle-class="toggle-calm">{{options.direction.disp}}</ion-toggle>
+</p>

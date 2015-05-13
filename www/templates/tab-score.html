@@ -3,10 +3,10 @@
         <!--<ion-toggle ng-model="castorama.gender.toggle" toggle-class="toggle-calm">{{castorama.gender.disp()}}</ion-toggle>-->
         <div class="row">
             <div class="col col-25 col-offset-25">
-                <img class="gender-icon {{ castorama.gender.toggle ? 'selected' : ''}}" ng-click="genderSelect('men')" ng-src="img/male.png" />
+                <button class="button button-icon button-gender ion-man {{ castorama.gender.toggle ? 'selected' : '' }}" ng-cl ng-click="genderSelect('men')"></button>
             </div>
             <div class="col col-25">
-                <img class="gender-icon {{ !castorama.gender.toggle ? 'selected' : ''}}" ng-click=" genderSelect('women')" ng-src="img/female.png" />
+                <button class="button button-icon button-gender ion-woman {{ !castorama.gender.toggle ? 'selected' : '' }}" ng-click="genderSelect('women')"></button>
             </div>
         </div>
         <div class="row" ng-repeat="e in ['shot', 'javelin', 'discus', 'hammer']">
@@ -14,7 +14,7 @@
                 <img class="event-icon" ng-src="{{castorama.events[e].name}}" />
             </div>
             <div class="col col-33 style-5">
-                <input type="number" ng-model="castorama.events[e].result" step="1" ng-click="inputClick()" placeholder="(cm)" />
+                <input type="number" ng-model="castorama.events[e].result" step="1" placeholder="(cm)" />
             </div>
             <div class="col col-33 col-offset-10 number-display">
                 {{castorama.events[e].score}}

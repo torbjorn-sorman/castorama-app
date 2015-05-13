@@ -1,48 +1,77 @@
+String.prototype.capitalizeFirstLetter = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 angular.module('starter.controllers', [])
+
+.controller('RecordCtrl', function ($scope, $stateParams, $ionicLoading, $http, ScoreTable, RecordTracker) {
+    var selectedRecord = null;
+    $scope.castorama = new Castorama(ScoreTable);
+    var updateRecord = function (record) {
+        $scope.record = record;
+        $scope.castorama.setFromRecord(record);
+        $ionicLoading.hide();
+    }
+    selectedRecord = RecordTracker.get($stateParams.recordId, $http, updateRecord);
+    if (selectedRecord == null) {
+        $ionicLoading.show({
+            template: 'Loading...'
+        });
+        console.log('wait...');        
+    } else {
+        updateRecord(selectedRecord);
+    }
+    $scope.toMeterString = toMeterString;
+})
 
 .controller('ScoreCtrl', function ($scope, ScoreTable) {
     $scope.castorama = new Castorama(ScoreTable);
-    $scope.inputClick = function () {
-        console.log("me!");
-    }
     $scope.genderSelect = function (g) {
         $scope.castorama.gender.toggle = (g == 'men');
     }
 })
 
-.controller('StatsCtrl', function ($scope, $http, $ionicPopup, $ionicScrollDelegate) {
+.controller('StatsCtrl', function ($scope, $http, $ionicPopup, $ionicScrollDelegate, RecordTracker) {
+
+    // Variables
     var offset = 0;
     var limit = 20;
     var canLoadMore = true;
-
-    $scope.orderItems = [
+    var orderingItems = [
       new OrderItem("Datum", 'date'),
       new OrderItem("Namn", 'name'),
       new OrderItem("Förening", 'club'),
       new OrderItem("Poäng", 'score'),
-      new OrderItem("Kula", 'shot'),
-      new OrderItem("Spjut", 'jav'),
-      new OrderItem("Diskus", 'disc'),
-      new OrderItem("Slägga", 'ham')
-    ];    
-    $scope.options = {
+      new OrderItem("Kula", 'shot', 'shot'),
+      new OrderItem("Spjut", 'jav', 'javelin'),
+      new OrderItem("Diskus", 'disc', 'discus'),
+      new OrderItem("Slägga", 'ham', 'hammer')
+    ];
+    var options = {
         gender: 'all',
         yearStart: 1981,
         yearEnd: 2014,
         direction: new OrderDirection(),
-        orderby: $scope.orderItems[0].column
-    }
-    $scope.search = { name: "", club: "" };
-    
+        orderby: orderingItems[0]
+    };
+    var search = { name: "", club: "" };
+
+    // "Public"
+    $scope.orderItems = orderingItems;
+    $scope.nonEventItems = orderingItems.slice(0, 4);
+    $scope.eventItems = orderingItems.slice(4, orderingItems.length);
+    $scope.options = options;
+    $scope.search = search;
+    $scope.result = [];
     $scope.showOptions = optionsPopup($scope, $ionicPopup);
     $scope.showSearch = searchPopup($scope, $ionicPopup);
-    $scope.result = [];
     $scope.addItems = function () {
-        console.log('addItems');
         $http.post('http://datormannen.se/index.php/stats/search/', postData(limit, offset)).success(function (data) {
             canLoadMore = (data.length == limit);
-            for (var i = 0; i < data.length; ++i)
+            for (var i = 0; i < data.length; ++i) {
                 $scope.result.push(data[i]);
+                RecordTracker.set(data[i]);
+            }
             offset += data.length;
             $scope.$broadcast('scroll.infiniteScrollComplete');
         });
@@ -64,7 +93,7 @@ angular.module('starter.controllers', [])
         var cohort = "alla";
         if (opt.gender != 'all')
             cohort = (opt.gender == 'men') ? "män" : "kvinnor";
-        return search + cohort + " från " + opt.yearStart + " till " + opt.yearEnd;
+        return (search + cohort + " från " + opt.yearStart + " till " + opt.yearEnd).capitalizeFirstLetter();
     }
     $scope.scrollTop = function () {
         $ionicScrollDelegate.scrollTop();
@@ -74,6 +103,19 @@ angular.module('starter.controllers', [])
         canLoadMore = true;
         offset = 0;
     }
+    $scope.eventSummary = function (eventItem) {
+        if (eventItem.shot == 0 && eventItem.jav == 0 && eventItem.disc == 0 && eventItem.ham == 0)
+            return '';
+        return toMeterString(eventItem.shot) + " | " + toMeterString(eventItem.jav) + " | " + toMeterString(eventItem.disc) + " | " + toMeterString(eventItem.ham);
+    }
+    $scope.sortingIndex = function (options, item) {
+        if (options.orderby.isMeter)
+            for (p in item)
+                if (p == options.orderby.column)
+                    return toMeterString(item[p]);
+        return item.score;
+    }
+    // Private functions    
     function postData(limit, offset) {
         var d = {
             fromdate: $scope.options.yearStart + "-01-01",
@@ -83,7 +125,7 @@ angular.module('starter.controllers', [])
             club: $scope.search.club,
             limit: limit,
             offset: offset,
-            orderby: $scope.options.orderby,
+            orderby: $scope.options.orderby.column,
             orderbydir: $scope.options.direction.order
         };
         return d;
@@ -91,7 +133,9 @@ angular.module('starter.controllers', [])
 });
 
 function OrderItem(title, column) {
-    return { title: title, column: column }
+    if (arguments.length > 2)
+        return { title: title, column: column, name: arguments[2], isMeter: true };
+    return { title: title, column: column, isMeter: false };
 }
 
 function OrderDirection() {
@@ -119,15 +163,14 @@ function optionsPopup($scope, $ionicPopup) {
             title: 'Sökfilter',
             scope: $scope,
             buttons: [
-              { text: 'Avbryt' },
-              {
-                  text: '<b>Spara</b>',
-                  type: 'button-positive',
-                  onTap: function () {
-                      $scope.resetResult();
-                      $scope.addItems();
-                  }
-              }
+                {
+                    text: '<b>OK</b>',
+                    type: 'button-positive',
+                    onTap: function () {
+                        $scope.resetResult();
+                        $scope.addItems();
+                    }
+                }
             ]
         });
     }

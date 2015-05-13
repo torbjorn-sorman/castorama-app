@@ -47,7 +47,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             }
         }
     })
-
     .state('tab.stats', {
         url: '/stats',
         views: {
@@ -57,23 +56,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             }
         }
     })
-
-    .state('score', {
-        url: '/score',
-        views: {
-            'tab-score': {
-                templateUrl: 'templates/tab-score.html',
-                controller: 'ScoreCtrl'
-            }
-        }
-    })
-
-    .state('stats', {
-        url: '/stats',
+    .state('tab.stats-record', {
+        url: '/record/:recordId',
         views: {
             'tab-stats': {
-                templateUrl: 'templates/tab-stats.html',
-                controller: 'StatsCtrl'
+                templateUrl: 'templates/record.html',
+                controller: 'RecordCtrl'
             }
         }
     });
@@ -82,3 +70,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $urlRouterProvider.otherwise('/tab/score');
 
 });
+
+function toMeterString(txt) {
+    if (txt == 0)
+        return '-----';
+    var m = Math.floor(parseInt(txt) / 100);
+    var cm = parseInt(txt) - m * 100;
+    var d = (0.1).toLocaleString().substring(1, 2);
+    var m_str = ((m < 10) ? ' ' : '') + m.toString();
+    var cm_str = ((cm < 10) ? '0' : '') + cm.toString();
+    return m_str + d + cm_str + 'm';
+}

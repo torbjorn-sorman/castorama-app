@@ -1,0 +1,25 @@
+<ion-view view-title="Resultat">        
+    <ion-content class="padding colored-background">
+        <h3>{{record.date}}</h3>
+        <h2>{{record.name + ", " + record.club}}</h2>
+        <h1>
+            Po&auml;ng:
+            <span class="large-score">
+                {{record.score}}
+            </span>
+        </h1> 
+        <div ng-repeat="e in ['shot', 'javelin', 'discus', 'hammer']" title="Gren">
+            <div class="row" ng-if="castorama.events[e].result > 0">
+                <div class="col col-20">
+                    <img class="event-icon" ng-src="{{castorama.events[e].name}}" />
+                </div>
+                <div class="col number-display">
+                    {{toMeterString(castorama.events[e].result)}}
+                </div>
+                <div class="col number-display">
+                    {{castorama.events[e].score}}
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

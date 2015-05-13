@@ -1,50 +1,27 @@
 <ion-view view-title="Statistik">
-
-    <ion-header-bar class="bar bar-subheader bar-positive">
-        <div class="h1 title">Header Buttons</div>
+    <ion-content class="padding colored-background">
+        <ion-list class="list">
+            <ion-item class="item-icon-right" collection-repeat="item in result track by $index" href="#/tab/record/{{item.id}}">
+                <div class="row">
+                    <div class="col">
+                        <h2>{{item.date}}</h2>
+                        <p>{{item.name + ", " + item.club}}</p>
+                    </div>
+                    <div class="col col-10">
+                        {{sortingIndex(options, item)}}
+                    </div>
+                </div>
+                <i class="icon ion-chevron-right"></i>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll ng-if="moreItemsCanBeLoaded()" on-infinite="addItems()"></ion-infinite-scroll>
+    </ion-content>
+    <ion-footer-bar class="bar-positive" align-title="left">
+        <h1 class="title title-left">{{displayOptions(options)}}</h1>
         <div class="buttons">
             <button class="button icon ion-chevron-up" ng-click="scrollTop()"></button>
             <button class="button icon ion-gear-a" ng-click="showOptions()"></button>
             <button class="button icon ion-search" ng-click="showSearch()"></button>
         </div>
-    </ion-header-bar>
-
-    <ion-content class="padding colored-background has-subheader">
-
-
-        <!--
-        <ion-list>
-          <ion-item>
-            <div class="row">
-              <div class="col" ng-repeat="p in orderItems" ng-click="orderBy(p)">
-                <button class="button">{{p.title}} {{p.append}}</button>
-              </div>
-            </div>
-          </ion-item>
-        </ion-list>
-        -->
-        <ion-list>
-            <ion-item collection-repeat="item in result track by $index">
-                <!--
-                <div class="row">
-                  <div class="col" ng-repeat="p in [item.date, item.name, item.club, item.score, item.shot, item.jav, item.disc, item.ham] track by $index">
-                    {{toStringIfValue($index, p)}}
-                  </div>
-                </div>
-                -->
-                <div class="row">
-
-                    <div class="row">
-
-                        <div class="col" ng-repeat="p in [item.date, item.name, item.score] track by $index">
-                            {{toStringIfValue($index, p)}}
-                        </div>
-                    </div>
-                </div>
-            </ion-item>
-        </ion-list>
-        <ion-infinite-scroll ng-if="moreItemsCanBeLoaded()"
-                             on-infinite="addItems()">
-        </ion-infinite-scroll>
-    </ion-content>
+    </ion-footer-bar>
 </ion-view>

@@ -7680,6 +7680,9 @@ a.button {
   src: url('fonts/DIN145136breit.eot');
   src: url('fonts/DIN145136breit.eot') format('embedded-opentype'), url('fonts/DIN145136breit.woff2') format('woff2'), url('fonts/DIN145136breit.woff') format('woff'), url('fonts/DIN145136breit.ttf') format('truetype'), url('fonts/DIN145136breit.svg#DIN145136breit') format('svg'); }
 
+.selection-border, .selected, .button-selected, .event-icon-selected {
+  border: 2px solid rgba(0, 0, 0, 0.75); }
+
 .colored-background {
   background-color: #e6f5ff; }
 
@@ -7690,6 +7693,64 @@ a.button {
 .number-display {
   font-family: "DIN145136breit";
   font-size: 28px; }
+
+.large-score {
+  -webkit-filter: drop-shadow(6px 6px 6px #0000ff);
+  filter: url('filter/drop-shadow.html');
+  font-family: "DIN145136breit";
+  font-size: 48px; }
+
+.fixed-buttons {
+  background-color: rgba(255, 255, 255, 0);
+  text-align: right;
+  position: absolute;
+  z-index: 999;
+  margin: 10px;
+  top: 80px;
+  right: 0px; }
+
+.gender-icon {
+  height: 50px;
+  padding: 6px 16px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.selected {
+  -webkit-filter: drop-shadow(6px 6px 6px #0000ff);
+  filter: url('filter/drop-shadow.html');
+  padding: 4px 14px;
+  border-radius: 30px; }
+
+.small-text {
+  font-size: 9px; }
+
+.centered-text {
+  text-align: center; }
+
+.button-gender {
+  font-size: 50px;
+  padding: 6px 16px; }
+
+.button-sort {
+  font-size: 30px;
+  padding: 6px 16px; }
+
+.button-small-text {
+  font-size: 12px;
+  padding: 1px 6px; }
+
+.button-selected {
+  -webkit-filter: drop-shadow(6px 6px 6px #0000ff);
+  filter: url('filter/drop-shadow.html');
+  padding: 4px 14px;
+  border-radius: 25px; }
+
+.event-icon-selected {
+  -webkit-filter: drop-shadow(6px 6px 6px #0000ff);
+  filter: url('filter/drop-shadow.html');
+  margin: -1px;
+  padding-bottom: 0px;
+  border-radius: 40px; }
 
 input[type="text"], input[type="number"] {
   display: block;
@@ -7794,25 +7855,3 @@ input[type="text"]:focus, input[type="number"]:focus {
   -webkit-box-shadow: inset 1px 1px 2px 0 #c9c9c9;
   -moz-box-shadow: inset 1px 1px 2px 0 #c9c9c9;
   box-shadow: inset 1px 1px 2px 0 #c9c9c9; }
-
-.fixed-buttons {
-  background-color: rgba(255, 255, 255, 0);
-  text-align: right;
-  position: absolute;
-  z-index: 999;
-  margin: 10px;
-  top: 80px;
-  right: 0px; }
-
-.gender-icon {
-  height: 60px;
-  padding: 6px 16px;
-  margin-left: auto;
-  margin-right: auto; }
-
-.selected {
-  padding: 4px 14px;
-  border-radius: 30px;
-  border: 2px solid rgba(0, 0, 0, 0.75);
-  -webkit-filter: drop-shadow(6px 6px 6px #0000ff);
-  filter: url('filter/drop-shadow.html'); }

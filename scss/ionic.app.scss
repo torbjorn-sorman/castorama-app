@@ -17,7 +17,9 @@ $dark:                            #444 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-$gender-icon-size: 60px;
+$gender-icon-size: 50px;
+$event-icon-size: 40px;
+$sort-icon-size: 30px;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
@@ -28,19 +30,98 @@ $gender-icon-size: 60px;
     src: url('fonts/DIN145136breit.eot') format('embedded-opentype'), url('fonts/DIN145136breit.woff2') format('woff2'), url('fonts/DIN145136breit.woff') format('woff'), url('fonts/DIN145136breit.ttf') format('truetype'), url('fonts/DIN145136breit.svg#DIN145136breit') format('svg');
 }
 
+@mixin dropping-shadow($color: rgba(0,0,255,1), $radius: 6px) {
+    -webkit-filter: drop-shadow(6px 6px $radius $color);
+    filter: url('filter/drop-shadow.html');
+}
+
+.selection-border {
+    border: 2px solid rgba(0,0,0,0.75);
+}
+
 .colored-background {
     background-color: rgba(230,245,255,1);
 }
 
 .event-icon {
-    width: 40px;
-    height: 40px;
+    width: $event-icon-size;
+    height: $event-icon-size;    
 }
 
 .number-display {
     font-family: "DIN145136breit";
     font-size: 28px;
 }
+
+.large-score {
+    @include dropping-shadow;
+    font-family: "DIN145136breit";
+    font-size: 48px;
+}
+
+.fixed-buttons {
+    background-color: rgba(255,255,255,0);
+    text-align: right;
+    position: absolute;
+    z-index: 999;
+    margin: 10px;
+    top: 80px;
+    right: 0px;
+}
+
+.gender-icon {
+    height: $gender-icon-size;
+    padding: 6px 16px;    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.selected {
+    @include dropping-shadow;
+    @extend .selection-border;
+    padding: 4px 14px;
+    border-radius: 30px;
+}
+
+.small-text {
+    font-size: 9px;    
+}
+
+.centered-text {
+    text-align: center;
+}
+
+.button-gender {
+    font-size: $gender-icon-size;
+    padding: 6px 16px;
+}
+
+.button-sort {
+    font-size: $sort-icon-size;
+    padding: 6px 16px;
+}
+
+.button-small-text {
+    font-size: 12px;
+    padding: 1px 6px;
+}
+
+.button-selected {
+    @include dropping-shadow;
+    @extend .selection-border;
+    padding: 4px 14px;
+    border-radius: $gender-icon-size / 2;
+}
+
+.event-icon-selected {     
+    @include dropping-shadow;
+    @extend .selection-border;
+    margin: -1px;
+    padding-bottom: 0px;
+    border-radius: $event-icon-size;
+}
+
+// Ext
 
 input[type="text"], input[type="number"] {
     display: block;
@@ -156,29 +237,4 @@ input[type="text"]:focus, input[type="number"]:focus {
     -webkit-box-shadow: inset 1px 1px 2px 0 #c9c9c9;
     -moz-box-shadow: inset 1px 1px 2px 0 #c9c9c9;
     box-shadow: inset 1px 1px 2px 0 #c9c9c9;
-}
-
-.fixed-buttons {
-    background-color: rgba(255,255,255,0);
-    text-align: right;
-    position: absolute;
-    z-index: 999;
-    margin: 10px;
-    top: 80px;
-    right: 0px;
-}
-
-.gender-icon {
-    height: $gender-icon-size;
-    padding: 6px 16px;    
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.selected {
-    padding: 4px 14px;
-    border-radius: 30px;
-    border: 2px solid rgba(0,0,0,0.75);
-    -webkit-filter: drop-shadow(6px 6px 6px rgba(0,0,255,1));
-    filter: url('filter/drop-shadow.html');
 }

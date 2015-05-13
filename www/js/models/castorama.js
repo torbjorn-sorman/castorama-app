@@ -21,6 +21,13 @@ function Castorama(scoreTable) {
     this.__defineGetter__("gender", function () {
         return gender;
     });
+    this.setFromRecord = function (record) {
+        gender = new Gender(record.sex == 1 ? 'men' : 'women');
+        events.shot.result = record.shot;
+        events.discus.result = record.disc;
+        events.javelin.result = record.jav;
+        events.hammer.result = record.ham;
+    }
 }
 
 function Sum() {
