@@ -7695,8 +7695,6 @@ a.button {
   font-size: 28px; }
 
 .large-score {
-  -webkit-filter: drop-shadow(6px 6px 6px #0000ff);
-  filter: url('filter/drop-shadow.html');
   font-family: "DIN145136breit";
   font-size: 48px; }
 
@@ -7716,8 +7714,6 @@ a.button {
   margin-right: auto; }
 
 .selected {
-  -webkit-filter: drop-shadow(6px 6px 6px #0000ff);
-  filter: url('filter/drop-shadow.html');
   padding: 4px 14px;
   border-radius: 30px; }
 
@@ -7740,14 +7736,10 @@ a.button {
   padding: 1px 6px; }
 
 .button-selected {
-  -webkit-filter: drop-shadow(6px 6px 6px #0000ff);
-  filter: url('filter/drop-shadow.html');
   padding: 4px 14px;
   border-radius: 25px; }
 
 .event-icon-selected {
-  -webkit-filter: drop-shadow(6px 6px 6px #0000ff);
-  filter: url('filter/drop-shadow.html');
   margin: -1px;
   padding-bottom: 0px;
   border-radius: 40px; }

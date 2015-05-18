@@ -54,7 +54,6 @@ $sort-icon-size: 30px;
 }
 
 .large-score {
-    @include dropping-shadow;
     font-family: "DIN145136breit";
     font-size: 48px;
 }
@@ -77,7 +76,6 @@ $sort-icon-size: 30px;
 }
 
 .selected {
-    @include dropping-shadow;
     @extend .selection-border;
     padding: 4px 14px;
     border-radius: 30px;
@@ -107,14 +105,12 @@ $sort-icon-size: 30px;
 }
 
 .button-selected {
-    @include dropping-shadow;
     @extend .selection-border;
     padding: 4px 14px;
     border-radius: $gender-icon-size / 2;
 }
 
 .event-icon-selected {     
-    @include dropping-shadow;
     @extend .selection-border;
     margin: -1px;
     padding-bottom: 0px;
