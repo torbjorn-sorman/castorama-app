@@ -30,6 +30,18 @@ $sort-icon-size: 30px;
     src: url('fonts/DIN145136breit.eot') format('embedded-opentype'), url('fonts/DIN145136breit.woff2') format('woff2'), url('fonts/DIN145136breit.woff') format('woff'), url('fonts/DIN145136breit.ttf') format('truetype'), url('fonts/DIN145136breit.svg#DIN145136breit') format('svg');
 }
 
+@font-face {
+    font-family: 'futurablack';
+    src: url('fonts/futura_black-webfont.eot');
+    src: url('fonts/futura_black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/futura_black-webfont.woff2') format('woff2'),
+         url('fonts/futura_black-webfont.woff') format('woff'),
+         url('fonts/futura_black-webfont.ttf') format('truetype'),
+         url('fonts/futura_black-webfont.svg#futurablack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @mixin dropping-shadow($color: rgba(0,0,255,1), $radius: 6px) {
     -webkit-filter: drop-shadow(6px 6px $radius $color);
     filter: url('filter/drop-shadow.html');

@@ -43,9 +43,9 @@ angular.module('starter.controllers', [])
       new OrderItem("Förening", 'club'),
       new OrderItem("Poäng", 'score'),
       new OrderItem("Kula", 'shot', 'shot'),
-      new OrderItem("Spjut", 'jav', 'javelin'),
-      new OrderItem("Diskus", 'disc', 'discus'),
-      new OrderItem("Slägga", 'ham', 'hammer')
+      new OrderItem("Spjut", 'javelin', 'javelin'),
+      new OrderItem("Diskus", 'discus', 'discus'),
+      new OrderItem("Slägga", 'hammer', 'hammer')
     ];
     var options = {
         gender: 'all',
