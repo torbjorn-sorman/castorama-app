@@ -31,8 +31,8 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('StatsCtrl', function ($scope, $http, $ionicPopup, $ionicScrollDelegate, RecordTracker) {
-
+.controller('StatsCtrl', function ($scope, $http, $ionicPopup, $ionicScrollDelegate, RecordTracker)
+{
     // Variables
     var offset = 0;
     var limit = 20;
@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
         direction: new OrderDirection(),
         orderby: orderingItems[0]
     };
-    var search = { name: "", club: "" };
+    var search = { name: "", club: "", location: "" };
 
     // "Public"
     $scope.orderItems = orderingItems;
@@ -123,6 +123,7 @@ angular.module('starter.controllers', [])
             gender: $scope.options.gender,
             name: $scope.search.name,
             club: $scope.search.club,
+            location: $scope.search.location,
             limit: limit,
             offset: offset,
             orderby: $scope.options.orderby.column,
